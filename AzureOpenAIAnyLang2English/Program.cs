@@ -10,6 +10,7 @@ internal class Program
     private static async Task Main(string[] args)
     {
         string openAiApiKey = "";
+        string openAPiRequest = "https://api.openai.com/v1/chat/completions";
 
         Console.Write("Enter the text to translate: ");
         string userText = Console.ReadLine();
@@ -42,7 +43,7 @@ internal class Program
             };
 
             var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://api.openai.com/v1/chat/completions", content);
+            var response = await client.PostAsync(openAPiRequest, content);
 
             var responseBody = await response.Content.ReadAsStringAsync();
 
